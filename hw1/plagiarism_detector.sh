@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##################################################
-# David Ventura Dias, 
+# David Ventura Diaz, 
 # Abdon Verdejo-Parada, av34626
 # hw1 sds335
 ##################################################
@@ -34,7 +34,7 @@ number_of_files="$(ls -la $2 | grep -c "^-rw.")"
 if [ ! $number_of_files -eq 0 ] ; then
 
     #We now run through all the files in that directory
-    for file in "$2"* ; do
+    for file in ./$2/* ; do
 	
 	#This will get the number of lines outputted from diff
 	#if the value of result is 0, then the files are the same
