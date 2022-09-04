@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##################################################
-# David Ventura Diaz, 
+# David Ventura Diaz, dv9486
 # Abdon Verdejo-Parada, av34626
 # hw1 sds335
 ##################################################
