@@ -30,26 +30,33 @@ fi
 #This gets the number of files that are in the directory
 number_of_files="$(ls -la $2 | grep -c "^-rw.")"
 
+#This variable will be incharge of wether the files are identical
+isIdentical="false"
+
 #If the directory had no files, then it gets added automatically
 if [ ! $number_of_files -eq 0 ] ; then
 
     #We now run through all the files in that directory
-    for file in ./$2/* ; do
-	
+    for file in "$2/"* ; do
+		
 	#This will get the number of lines outputted from diff
 	#if the value of result is 0, then the files are the same
-	# if they are not the same, then the files are different
-	result="$( diff $1 $file | wc -l )" 
+	#if the value of result is greater than 0, then the files are different
+	result="$( diff -w $1 $file | wc -l )" 
 	
 	#If the variable result is 0, then the files are identical
 	if [ $result -eq 0 ] ; then
 	    echo "The files $1 and $file are identical!!"
+	    isIdentical="true"
+	    #break
 	    exit 1
 	fi
     
     done
 fi
 
-#If there was no complaints then the inputted file gets coppied into the inputted directory
-cp $1 ./$2
-#echo "The file $1 was copied into $2 directory"
+#If the file are not identical
+if [ "$isIdentical" == "false" ] ; then
+    #If there was no complaints then the inputted file gets coppied into the inputted directory
+    cp $1 "$2/"
+fi
