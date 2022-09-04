@@ -1,4 +1,4 @@
-#!//usr/bin/bash
+#!/usr/bin/bash
 
 #Make sure that the user inputted only 2 arguments
 if [ $# -lt 2 ] || [ $# -gt 2 ] ; then
@@ -11,20 +11,34 @@ fi
 #Make sure that the user did input a file and a directory
 if [ ! -f $1 ] ; then
     echo "Please input a file for the first argument"
+    echo "This is the correct way to run the shell"
+    echo "./plagiarism_detector.sh <file> <directory>"
     exit 1
 elif [ ! -d $2 ] ; then
     echo "Please input a directory for the second argument"
+    echo "This is the correct way to run the shell"
+    echo "./plagiarism_detector.sh <file> <directory>"
     exit 1
 fi
 
-#This will get all the items that are inside the directory
-#ls ./$2 | grep $1
+#This gets the number of files that are in the directory
+number_of_files="$(ls -la $2 | grep -c "^-rw.")"
 
-#if the file is different from anything in the directory, it should be copied into the directory; the script should not produce any output
+#If the directory had no files, then it gets added automatically
+if [ ! $number_of_files -eq 0 ] ; then
+    #We now run through all the files in that directory
+    for file in "$2"* ; do
+	#This is the number of lines that are displayed if they are different
+	result="$( diff $1 $file | wc -l )"
+	
+	#If the variable result is 0, then the files are identical
+	if [ $result -eq 0 ] ; then
+	    echo "The files $1 and $file are the same!!"
+	    exit 1
+	fi
+	
+    done
+fi
 
-
-#if the file is the same as a file in the directory, the script should complain
-
-#test whether files are 'the same' should be made with the diff command. 
-
-
+#If there was no complaints then the inputted file gets coppied into the inputted directory
+cp $1 ./$2
