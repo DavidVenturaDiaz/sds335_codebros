@@ -1,1 +1,1 @@
-#### Personal repo for David and Abe for SDS335
+#### Personal repo for David, Alan and Abe for SDS335
