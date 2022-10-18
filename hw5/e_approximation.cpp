@@ -73,7 +73,7 @@ int main(){
   limitApproximation();
 
   //using the taylorExpansion function
-  int uptoVal = 10;
+  int uptoVal = 15;
   automateTaylorSeries(uptoVal);
 
 
