@@ -4,8 +4,8 @@
 using namespace std;
 
 void limitApproximation(){
-  double n;
-  double e_approx;
+  float n;
+  float e_approx;
   
   //Starting remark to the user
   cout << "\nThis is approximation of e using the limit method\n\n";
@@ -32,7 +32,7 @@ double factorial(double val){
 
 void taylorExpansion(int &uptoVal){
   //This is the starting e approximation
-  double e_approximation = 0;
+  float e_approximation = 0;
 
   //This will do the taylor series expansion
   for(int i = 0; i < uptoVal; i++){
@@ -51,7 +51,7 @@ void automateTaylorSeries(int &valIterations){
   cout << "\nThis is an approximation of e using Talor Series Expansion\n";
 
   //This is the for loop that will be used to automate the taylor series expansion
-  for(int i = 0; i < valIterations; i++){
+  for(int i = 1; i <= valIterations; i++){
     taylorExpansion(i);
   } 
 
