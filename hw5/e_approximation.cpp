@@ -1,6 +1,12 @@
 #include <iostream>
 #include <cmath>
 
+/*
+David Ventura-Diaz (dv9486)
+Alan Hsiao (ah56846)
+Abdon Verdejo-Parada (av34626)
+ */
+
 using namespace std;
 
 void limitApproximation(){
